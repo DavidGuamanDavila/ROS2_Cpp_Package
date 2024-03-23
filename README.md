@@ -41,3 +41,37 @@ source ~/ros2_ws/install/setup.bash
 ```
 This source command assumes that you created your workspace from your home directory ~. You will have to modifiy it depending on where your catkin workspace was initialized
 ## Create a CPP Package
+1. Begin by going into your src folder in your catkin ws
+```
+cd ros2_ws/src
+```
+2. Create your Package
+```
+ros2 pkg create my_cpp+pkg --build-type ament_cmake --dependencies rclcpp
+```
+3. Now build your workspace
+```
+colcon build
+```
+## Hoe to ROS RUN your NODE
+1. Update CMakeLists.txt 
+```
+add_executable(cpp_test_node src/cpp_test_node.cpp)
+ament_target_dependencies(cpp_test_node rclcpp)
+install(TARGETS
+  cpp_test_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+```
+2. Build your ROS2 Package
+```
+colcon build --packages-select my_cpp_pkg
+```
+3. Source the Setup Script
+```
+source ~/ros2_ws/install/setup.bash
+```
+4. Run the node
+```
+ros2 run my_cpp_pkg cpp_test_node
+```
