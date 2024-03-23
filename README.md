@@ -53,7 +53,7 @@ ros2 pkg create my_cpp+pkg --build-type ament_cmake --dependencies rclcpp
 ```
 colcon build
 ```
-## Hoe to ROS RUN your NODE
+## How to ROS RUN your NODE
 1. Update CMakeLists.txt 
 ```
 add_executable(cpp_test_node src/cpp_test_node.cpp)
@@ -74,4 +74,9 @@ source ~/ros2_ws/install/setup.bash
 4. Run the node
 ```
 ros2 run my_cpp_pkg cpp_test_node
+```
+
+## Launch Same Node with Different Name
+```
+ros2 run my_cpp_pkg cpp_node --ros-args -r __node:=node2
 ```
